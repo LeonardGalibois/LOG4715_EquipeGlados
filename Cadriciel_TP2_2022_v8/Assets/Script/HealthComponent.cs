@@ -5,10 +5,40 @@ using UnityEngine.Events;
 
 public class HealthComponent : MonoBehaviour
 {
-    [Min(1)]
     [SerializeField]
-    private int MaximumHealth = 10;
-    private int Health;
+    [Min(1)]
+    int maximumHealth = 10;
+    public int MaximumHealth
+    {
+        private set
+        {
+            maximumHealth = value;
+
+            OnHealthUpdate.Invoke(HealthPercentage);
+        }
+        get => maximumHealth;
+    }
+
+    int health;
+    public int Health
+    {
+        private set
+        {
+            if (value == health) return;
+
+            if (value <= 0)
+            {
+                health = 0;
+                OnDeath.Invoke();
+            }
+            else health = value <= MaximumHealth ? value : MaximumHealth;
+
+            OnHealthUpdate.Invoke(HealthPercentage);
+        }
+        get => health;
+    }
+
+    public bool IsAlive { get => Health > 0; }
 
     private float HealthPercentage
     {
@@ -24,28 +54,21 @@ public class HealthComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Health = MaximumHealth;
+        Revive();
     }
 
     public void TakeDamage(int amount)
     {
-        Health -= amount;
-        OnHealthUpdate.Invoke(HealthPercentage);
-
-        if (Health <= 0)
-        {
-            OnDeath.Invoke();
-        }
+        if (IsAlive) Health -= amount;
     }
 
     public void Heal(int amount)
     {
-        Health += amount;
-        if(Health > MaximumHealth)
-        {
-            Health = MaximumHealth;
-        }
+        if (IsAlive) Health += amount;
+    }
 
-        OnHealthUpdate.Invoke(HealthPercentage);
+    public void Revive()
+    {
+        Health = MaximumHealth;
     }
 }
