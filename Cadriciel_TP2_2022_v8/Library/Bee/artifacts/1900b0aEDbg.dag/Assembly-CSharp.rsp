@@ -343,6 +343,8 @@
 -analyzer:"C:/Program Files/Unity/2022.3.6f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/PlayerControler.cs"
 "Assets/Script/HealthComponent.cs"
+"Assets/Script/SwarmComponent.cs"
+"Assets/Script/SwarmManagerComponent.cs"
 "Assets/Supercyan Character Pack Free Sample/Scripts/CameraLogic.cs"
 "Assets/Supercyan Character Pack Free Sample/Scripts/Demo.cs"
 "Assets/Supercyan Character Pack Free Sample/Scripts/SimpleCharacterControl.cs"
