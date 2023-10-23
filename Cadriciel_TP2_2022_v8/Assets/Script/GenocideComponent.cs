@@ -40,6 +40,6 @@ public class GenocideComponent : MonoBehaviour
 
         foreach (HealthComponent healthComponent in enemiesToDefeat) healthComponent.OnDeath.RemoveListener(OnEnemyDeath);
 
-        OnGenocideCompleted.Invoke();
+        OnGenocideCompleted?.Invoke();
     }
 }

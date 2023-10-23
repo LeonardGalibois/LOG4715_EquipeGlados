@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ScoreManager: MonoBehaviour
 {
-    UnityEvent<int> OnScoreUpdated;
+    public UnityEvent<int> OnScoreUpdated;
 
     static public ScoreManager Instance { private set; get; }
 
@@ -15,7 +15,7 @@ public class ScoreManager: MonoBehaviour
         set
         {
             score = value;
-            OnScoreUpdated.Invoke(score);
+            OnScoreUpdated?.Invoke(score);
         }
         get => score;
     }

@@ -14,7 +14,7 @@ public class HealthComponent : MonoBehaviour
         {
             maximumHealth = value;
 
-            OnHealthUpdate.Invoke(HealthPercentage);
+            OnHealthUpdate?.Invoke(HealthPercentage);
         }
         get => maximumHealth;
     }
@@ -29,11 +29,11 @@ public class HealthComponent : MonoBehaviour
             if (value <= 0)
             {
                 health = 0;
-                OnDeath.Invoke();
+                OnDeath?.Invoke();
             }
             else health = value <= MaximumHealth ? value : MaximumHealth;
 
-            OnHealthUpdate.Invoke(HealthPercentage);
+            OnHealthUpdate?.Invoke(HealthPercentage);
         }
         get => health;
     }
