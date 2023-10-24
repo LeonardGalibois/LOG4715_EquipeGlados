@@ -12,7 +12,7 @@ public struct AbilitySlot
 public class AbilitiesInputComponent : MonoBehaviour
 {
     [SerializeField]
-    public AbilitiesManagerComponent abilitiesComponent;
+    public AbilitiesManagerComponent abilitiesManagerComponent;
 
     [SerializeField]
     AbilitySlot[] abilitySlots;
@@ -24,7 +24,7 @@ public class AbilitiesInputComponent : MonoBehaviour
         {
             if (!Input.GetKeyDown(slot.key)) continue;
 
-            abilitiesComponent?.ActivateAbility(slot.ability);
+            abilitiesManagerComponent?.ActivateAbility(slot.ability);
         }
     }
 }

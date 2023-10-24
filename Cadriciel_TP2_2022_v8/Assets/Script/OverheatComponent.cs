@@ -21,7 +21,7 @@ public class OverheatComponent : MonoBehaviour
     [Header("Overheat")]
 
     [SerializeField] [Min(0)]
-    float overheatDuration = 3.0f;
+    float overheatStallDuration = 3.0f;
 
     [Header("Events")]
 
@@ -75,7 +75,7 @@ public class OverheatComponent : MonoBehaviour
             
         Heat += heat;
 
-        nextCooldownTime = Time.time + (IsOverheated ? overheatDuration : delayBeforeCoolingDown);
+        nextCooldownTime = Time.time + (IsOverheated ? overheatStallDuration : delayBeforeCoolingDown);
     }
 
     public void Restore()

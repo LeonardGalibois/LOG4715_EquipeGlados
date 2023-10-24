@@ -7,6 +7,6 @@ public class TestAbility : Ability
 {
     public override void Activate(AbilitiesManagerComponent caster)
     {
-        Debug.Log($"Test Ability {DisplayName} has just been activated!");
+        Debug.Log($"Test Ability \"{DisplayName}\" has just been activated!");
     }
 }

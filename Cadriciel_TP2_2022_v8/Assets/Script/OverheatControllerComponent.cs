@@ -19,6 +19,9 @@ public class OverheatControllerComponent : MonoBehaviour
         overheatComponent.OnHeatUpdated.AddListener(UpdateOverheatBar);
         overheatComponent.OnOverheated.AddListener(OnOverheated);
         overheatComponent.OnRestored.AddListener(OnRestored);
+
+        if (overheatComponent.IsOverheated) OnOverheated();
+        else OnRestored();
     }
 
     void UpdateOverheatBar(int value)
