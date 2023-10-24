@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 public class GenocideComponent : MonoBehaviour
 {
-    UnityAction OnGenocideCompleted;
-
     int killCount;
 
     [SerializeField]
     List<HealthComponent> enemiesToDefeat;
+
+    public UnityEvent OnGenocideCompleted;
 
     public bool HasBeenCleared { private set; get; }
 
