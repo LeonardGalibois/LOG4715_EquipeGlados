@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1478859396920171395}
   - component: {fileID: 6589222960476121336}
   - component: {fileID: 9065338116381128176}
-  - component: {fileID: 8257698369533223939}
-  - component: {fileID: 1211960134668587297}
+  - component: {fileID: 8716665936479686220}
+  - component: {fileID: 7778662763880777242}
   m_Layer: 9
   m_Name: Drone
   m_TagString: Untagged
@@ -78,6 +78,8 @@ MonoBehaviour:
   SeparationWeight: 1
   TargetWeight: 2
   Speed: 10
+  Damage: 1
+  KnockBackForce: 10
 --- !u!114 &9065338116381128176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,11 +95,23 @@ MonoBehaviour:
   maximumHealth: 10
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2299279849966605241}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthUpdate:
     m_PersistentCalls:
       m_Calls: []
---- !u!54 &8257698369533223939
+--- !u!54 &8716665936479686220
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +138,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 2
   m_CollisionDetection: 0
---- !u!65 &1211960134668587297
+--- !u!65 &7778662763880777242
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,7 +317,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: f14b6f7503476eb4e9b2afc1cc05e719,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8191320031324852873}
   m_SourcePrefab: {fileID: 100100000, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
 --- !u!4 &3353480410007984161 stripped
 Transform:
@@ -311,3 +329,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3353480410008371875}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3353480410008273921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: f14b6f7503476eb4e9b2afc1cc05e719,
+    type: 3}
+  m_PrefabInstance: {fileID: 3353480410008371875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8191320031324852873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353480410008273921}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 0.25, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0}
