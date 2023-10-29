@@ -118,7 +118,7 @@ public class SwarmComponent : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, (Character.transform.position - transform.position).normalized, out hit))
         {
-            if (hit.collider.tag == "Character")
+            if (hit.collider.tag == "Character" && hit.collider.enabled)
             {
                 direction += SteerTowards(Character.transform.position - transform.position) * TargetWeight;
             }
@@ -129,10 +129,26 @@ public class SwarmComponent : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(this.transform.position, this.transform.forward);
-        if (Physics.SphereCast(ray, 1.25f, out hit, VisionRadius, 1))
+        if (Physics.Raycast(ray, out hit, VisionRadius / 2) && (hit.collider.tag != "Swarm") && (hit.collider.tag != "Character"))
         {
-            direction += SteerTowards(hit.normal);
+            direction += 10 * SteerTowards(FindFreeDirection());
         }
+    }
+
+    private Vector3 FindFreeDirection()
+    {
+        const int angleStep = 5;
+        for(int angle = 0; angle < 360; angle += angleStep)
+        {
+            Vector3 direction = Quaternion.Euler(angle, 0, 0) * transform.forward;
+            RaycastHit hit;
+            if(!Physics.Raycast(transform.position, direction, out hit, VisionRadius / 2))
+            {
+                return direction;
+            }
+        }
+
+        return Vector3.zero;
     }
 
     private void UpdatePosition(Vector3 direction) 
@@ -142,11 +158,11 @@ public class SwarmComponent : MonoBehaviour
 
         float speed = Velocity.magnitude;
         Vector3 dir = Velocity / speed;
-        speed = Mathf.Clamp(speed, 1, Speed);
+        speed = Mathf.Clamp(speed, 2, Speed);
         Velocity = dir * speed;
 
         transform.position += Velocity * Time.deltaTime;
-        transform.forward = dir;
+        transform.forward = Vector3.Lerp(transform.forward, dir, 0.5f);
     }
 
     private void OnCollisionEnter(Collision collision)
