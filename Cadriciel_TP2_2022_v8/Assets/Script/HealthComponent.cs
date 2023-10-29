@@ -51,8 +51,7 @@ public class HealthComponent : MonoBehaviour
     public UnityEvent OnDeath;
     public UnityEvent<float> OnHealthUpdate;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Start()
     {
         Revive();
     }
