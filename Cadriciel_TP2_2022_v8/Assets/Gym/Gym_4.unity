@@ -548,6 +548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd4cd92365962847b41e0208757b750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnScoreUpdated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1380479130
 Transform:
   m_ObjectHideFlags: 0
@@ -575,7 +578,7 @@ GameObject:
   - component: {fileID: 1534314904}
   - component: {fileID: 1534314903}
   - component: {fileID: 1534314902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
