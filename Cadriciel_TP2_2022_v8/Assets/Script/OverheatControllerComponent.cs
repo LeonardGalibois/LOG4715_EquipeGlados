@@ -15,13 +15,24 @@ public class OverheatControllerComponent : MonoBehaviour
 
     void Start()
     {
-        barViewComponent.PercentValue = (float)overheatComponent.Heat / overheatComponent.MaxHeat;
-        overheatComponent.OnHeatUpdated.AddListener(UpdateOverheatBar);
-        overheatComponent.OnOverheated.AddListener(OnOverheated);
-        overheatComponent.OnRestored.AddListener(OnRestored);
+        barViewComponent.SetPercentValueInstantly((float)overheatComponent.Heat / overheatComponent.MaxHeat);
 
         if (overheatComponent.IsOverheated) OnOverheated();
         else OnRestored();
+    }
+
+    private void OnEnable()
+    {
+        overheatComponent.OnHeatUpdated.AddListener(UpdateOverheatBar);
+        overheatComponent.OnOverheated.AddListener(OnOverheated);
+        overheatComponent.OnRestored.AddListener(OnRestored);
+    }
+
+    private void OnDisable()
+    {
+        overheatComponent.OnHeatUpdated.RemoveListener(UpdateOverheatBar);
+        overheatComponent.OnOverheated.RemoveListener(OnOverheated);
+        overheatComponent.OnRestored.RemoveListener(OnRestored);
     }
 
     void UpdateOverheatBar(int value)
