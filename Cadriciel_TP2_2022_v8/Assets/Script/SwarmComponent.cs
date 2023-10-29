@@ -31,7 +31,7 @@ public class SwarmComponent : MonoBehaviour
     [SerializeField]
     private float Speed = 10;
 
-    private SwarmManagerComponent Manager;
+    private static List<SwarmComponent> SwarmElements = new List<SwarmComponent>();
     private PlayerControler Character;
 
     private Vector3 Velocity;
@@ -39,7 +39,7 @@ public class SwarmComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Manager = FindObjectOfType<SwarmManagerComponent>();
+        SwarmElements.Add(this);
         Character = FindObjectOfType<PlayerControler>();
         Velocity = Speed * transform.forward;
     }
@@ -52,7 +52,7 @@ public class SwarmComponent : MonoBehaviour
         Vector3 separation = Vector3.zero;
         int numberOfVisibleEnnemy = 0;
         
-        foreach(SwarmComponent swarmEnnemy in Manager.SwarmEnnemies)
+        foreach(SwarmComponent swarmEnnemy in SwarmElements)
         {
             Vector3 separationBetween = swarmEnnemy.transform.position - this.transform.position;
             float distance = separationBetween.magnitude;
@@ -114,5 +114,10 @@ public class SwarmComponent : MonoBehaviour
     {
         Vector3 v = vector.normalized * Speed - Velocity;
         return v;
+    }
+
+    private void OnDisable()
+    {
+        SwarmElements.Remove(this);
     }
 }
