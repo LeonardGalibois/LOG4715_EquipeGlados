@@ -38,6 +38,9 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     TrailRenderer DashTrail;
 
+    [SerializeField]
+    GameManager GM;
+
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
     {
@@ -142,7 +145,16 @@ public class PlayerControler : MonoBehaviour
 
     // Collision avec le sol
     void OnCollisionEnter(Collision coll)
-    {        
+    {
+        if (coll.gameObject.tag.Contains("Key"))
+        {
+            GM?.ObtainKey(coll.gameObject.tag);
+        }
+        if (coll.gameObject.tag.Contains("Door"))
+        {
+            GM?.openDoor(coll.gameObject);
+        }
+
         // On s'assure de bien être en contact avec le sol
         if ((WhatIsGround & (1 << coll.gameObject.layer)) == 0)
             return;

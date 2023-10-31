@@ -965,9 +965,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 4
   JumpForce: 7
+  DashForce: 10
+  dashCooldown: 1
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  DashTrail: {fileID: 0}
   GM: {fileID: 76758657}
 --- !u!65 &659859234
 BoxCollider:
