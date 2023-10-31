@@ -146,14 +146,7 @@ public class PlayerControler : MonoBehaviour
     // Collision avec le sol
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag.Contains("Key"))
-        {
-            GM?.ObtainKey(coll.gameObject.tag);
-        }
-        if (coll.gameObject.tag.Contains("Door"))
-        {
-            GM?.openDoor(coll.gameObject);
-        }
+        specialCollsion(coll);
 
         // On s'assure de bien être en contact avec le sol
         if ((WhatIsGround & (1 << coll.gameObject.layer)) == 0)
@@ -165,5 +158,59 @@ public class PlayerControler : MonoBehaviour
             _Grounded = true;
             _Anim.SetBool("Grounded", _Grounded);
         }
+    }
+
+    void specialCollsion(Collision coll)
+    {
+        if (coll.gameObject.tag == "Untagged")
+        {
+            return;
+        }
+        if (coll.gameObject.tag.Contains("Key"))
+        {
+            GM?.ObtainKey(coll.gameObject.tag);
+        }
+        if (coll.gameObject.tag.Contains("Door"))
+        {
+            GM?.openDoor(coll.gameObject);
+        }
+        if (coll.gameObject.tag.Contains("Stat"))
+        {
+            if (coll.gameObject.name.Contains("Speed"))
+            {
+                if (coll.gameObject.name.Contains("Decrease"))
+                {
+                    MoveSpeed -= 1;
+                }
+                if (coll.gameObject.name.Contains("Increase"))
+                {
+                    MoveSpeed += 1;
+                }
+
+                StartCoroutine(waitRespawn(coll));
+            }
+            if (coll.gameObject.name.Contains("Jump"))
+            {
+                if (coll.gameObject.name.Contains("Decrease"))
+                {
+                    JumpForce -= 1;
+                }
+                if (coll.gameObject.name.Contains("Increase"))
+                {
+                    JumpForce += 1;
+                }
+
+                StartCoroutine(waitRespawn(coll));
+            }
+
+        }
+    }
+    IEnumerator waitRespawn(Collision coll)
+    {
+        coll.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1);
+
+        coll.gameObject.SetActive(true);
     }
 }
