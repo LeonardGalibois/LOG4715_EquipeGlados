@@ -77,4 +77,6 @@ public class BarViewComponent : MonoBehaviour
     }
 
     void SetBarPercent(float percent) => bar?.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, container.rect.width * percent);
+
+    float GetBarPercent() => percentValue;
 }

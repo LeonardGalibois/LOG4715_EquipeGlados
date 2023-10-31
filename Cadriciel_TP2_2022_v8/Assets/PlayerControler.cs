@@ -15,6 +15,9 @@ public class PlayerControler : MonoBehaviour
     Animator _Anim { get; set; }
     Rigidbody _Rb { get; set; }
     Camera _MainCamera { get; set; }
+    bool canDash = true;
+
+    float dashingTime = 0.5f;
 
     // Valeurs exposées
     [SerializeField]
@@ -24,7 +27,16 @@ public class PlayerControler : MonoBehaviour
     float JumpForce = 10f;
 
     [SerializeField]
+    float DashForce = 10f;
+
+    [SerializeField]
+    float dashCooldown = 1f;
+
+    [SerializeField]
     LayerMask WhatIsGround;
+    
+    [SerializeField]
+    TrailRenderer DashTrail;
 
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
@@ -48,6 +60,7 @@ public class PlayerControler : MonoBehaviour
         HorizontalMove(horizontal);
         FlipCharacter(horizontal);
         CheckJump();
+        CheckDash();
     }
 
     // Gère le mouvement horizontal
@@ -72,6 +85,37 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
+    // Gère la ruée du personnage, ainsi que son animation de ruée
+
+
+    void CheckDash()
+    {
+        if (Input.GetButtonDown("Dash"))
+        {
+            StartCoroutine(Dash());
+        }
+    }
+    IEnumerator Dash()
+    {
+            if (canDash)
+            {
+                canDash = false;
+                if (_Flipped)
+                {
+                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * -DashForce), ForceMode.Impulse);
+                }
+                else
+                {
+                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * DashForce), ForceMode.Impulse);
+            }
+                DashTrail.emitting = true;
+                yield return new WaitForSeconds(dashingTime);
+                DashTrail.emitting = false;
+                yield return new WaitForSeconds(dashCooldown);
+                canDash = true;
+            }
+    }
+
     // Gère l'orientation du joueur et les ajustements de la camera
     void FlipCharacter(float horizontal)
     {
@@ -89,6 +133,11 @@ public class PlayerControler : MonoBehaviour
             _MainCamera.transform.Rotate(FlipRotation);
             _MainCamera.transform.localPosition = CameraPosition;
         }
+    }
+
+    public bool isFlipped()
+    {
+        return _Flipped;
     }
 
     // Collision avec le sol
