@@ -519,6 +519,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1241727694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241727695}
+  - component: {fileID: 1241727696}
+  m_Layer: 0
+  m_Name: DamageHelper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1241727695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241727694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 577, y: 264.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1241727696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241727694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb156b7287b3ff4ea9094bf16f72360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageAmount: 2
+  HealAmount: 2
 --- !u!1 &1380479128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,9 +1110,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 4
   JumpForce: 7
+  DashForce: 10
+  dashCooldown: 1
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  DashTrail: {fileID: 0}
+  GM: {fileID: 0}
 --- !u!135 &1992215971
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1248,3 +1298,4 @@ SceneRoots:
   - {fileID: 1380479130}
   - {fileID: 1617775086}
   - {fileID: 978737478}
+  - {fileID: 1241727695}

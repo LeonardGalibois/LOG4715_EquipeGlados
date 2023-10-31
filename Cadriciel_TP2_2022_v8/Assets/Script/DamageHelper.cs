@@ -34,7 +34,9 @@ public class DamageHelper : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(mouseRay, out hit))
             {
-                HealthComponent health = hit.collider.GetComponent<HealthComponent>();
+                HealthComponent health = hit.collider.GetComponent<HealthComponent>()
+                                ?? hit.collider.GetComponentInParent<HealthComponent>()
+                                ?? hit.collider.GetComponentInChildren<HealthComponent>();
 
                 health?.TakeDamage(DamageAmount);
             }
@@ -50,7 +52,10 @@ public class DamageHelper : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(mouseRay, out hit))
             {
-                HealthComponent health = hit.collider.GetComponent<HealthComponent>();
+                HealthComponent health = hit.collider.GetComponent<HealthComponent>() 
+                                ?? hit.collider.GetComponentInParent<HealthComponent>() 
+                                ?? hit.collider.GetComponentInChildren<HealthComponent>();
+
 
                 health?.Heal(HealAmount);
             }
