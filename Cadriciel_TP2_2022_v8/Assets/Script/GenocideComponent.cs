@@ -34,8 +34,8 @@ public class GenocideComponent : MonoBehaviour
 
     void OnEnemyDeath()
     {
-        if (HasBeenCleared || ++killCount <= enemiesToDefeat.Count) return;
-
+        if (HasBeenCleared || ++killCount < enemiesToDefeat.Count) return;
+        
         HasBeenCleared = true;
 
         foreach (HealthComponent healthComponent in enemiesToDefeat) healthComponent.OnDeath.RemoveListener(OnEnemyDeath);

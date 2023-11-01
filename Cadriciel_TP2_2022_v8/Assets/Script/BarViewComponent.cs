@@ -34,8 +34,6 @@ public class BarViewComponent : MonoBehaviour
 
     private void Awake()
     {
-        SetBarPercent(0);
-
         increaseBar?.gameObject.SetActive(false);
         decreaseBar?.gameObject.SetActive(false);
 
@@ -77,6 +75,4 @@ public class BarViewComponent : MonoBehaviour
     }
 
     void SetBarPercent(float percent) => bar?.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, container.rect.width * percent);
-
-    float GetBarPercent() => percentValue;
 }
