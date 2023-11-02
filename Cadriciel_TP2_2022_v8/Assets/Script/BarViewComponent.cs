@@ -38,6 +38,7 @@ public class BarViewComponent : MonoBehaviour
         decreaseBar?.gameObject.SetActive(false);
 
         SetPercentValueInstantly(0);
+        bar?.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0.0f);
     }
 
     private void Update()

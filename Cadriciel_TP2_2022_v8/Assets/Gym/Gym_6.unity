@@ -994,9 +994,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press ''E'' to simulate the use
-
-    of an ability that prints to console'
+  m_text: "Press 'E' to simulate the use\nof an ability that prints to console\nyou
+    can see the time that it was used \nin the timestamp of the console"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1424,9 +1423,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 4
   JumpForce: 7
+  DashForce: 10
+  dashCooldown: 1
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  DashTrail: {fileID: 0}
+  GM: {fileID: 0}
 --- !u!135 &1987298736
 SphereCollider:
   m_ObjectHideFlags: 0
