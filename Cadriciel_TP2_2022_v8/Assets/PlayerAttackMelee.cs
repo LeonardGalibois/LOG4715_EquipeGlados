@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttackMelee : MonoBehaviour
 {
     bool CanAttack = true;
-    Vector3 Zoffset = new Vector3(0, 0, 1);
+    Vector3 Zoffset = new Vector3(0, 0, 0.3f);
     Vector3 Yoffset = new Vector3(0, 0.75f, 0);
     Animator _Anim { get; set; }
     [SerializeField]
