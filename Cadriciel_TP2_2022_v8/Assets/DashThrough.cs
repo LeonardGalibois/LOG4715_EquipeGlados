@@ -34,10 +34,8 @@ public class DashThrough : MonoBehaviour
     IEnumerator PulseCollider()
     {
         m_Collider.enabled = false;
-        Debug.Log("collider off");
         yield return new WaitForSeconds(0.3f);
         m_Collider.enabled = true;
-        Debug.Log("collider on");
         yield return new WaitForSeconds(dashCooldown*1.1f);
         CanDash = true;
     }

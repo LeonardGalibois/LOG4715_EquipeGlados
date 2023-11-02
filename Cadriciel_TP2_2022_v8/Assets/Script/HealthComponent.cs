@@ -69,15 +69,4 @@ public class HealthComponent : MonoBehaviour
     {
         Health = MaximumHealth;
     }
-
-    //public void ShowFloatingText()
-    //{
-    //    Debug.Log("ShowFloatingText");
-    //    var text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
-    //    text.GetComponent<TextMesh>().color = Color.red;
-    //    text.GetComponent<TextMesh>().fontSize = 25;
-    //    text.GetComponent<TextMesh>().text = "-" + 1;
-    //    text.transform.position += new Vector3(0, Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
-    //    Destroy(text, 1f);
-    //}
 }

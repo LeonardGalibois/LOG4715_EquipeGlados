@@ -17,7 +17,6 @@ public class PlayerControler : MonoBehaviour
     Camera _MainCamera { get; set; }
     bool canDash = true;
 
-    float dashingTime = 0.5f;
 
     // Valeurs exposées
     [SerializeField]
@@ -112,9 +111,9 @@ public class PlayerControler : MonoBehaviour
                     _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * DashForce), ForceMode.Impulse);
             }
                 DashTrail.emitting = true;
-                yield return new WaitForSeconds(dashingTime);
-                DashTrail.emitting = false;
                 yield return new WaitForSeconds(dashCooldown);
+                DashTrail.emitting = false;
+                //yield return new WaitForSeconds(dashCooldown);
                 canDash = true;
             }
     }
