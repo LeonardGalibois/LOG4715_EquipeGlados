@@ -177,6 +177,7 @@ public class PlayerControler : MonoBehaviour
         {
             if (coll.gameObject.name.Contains("Speed"))
             {
+                
                 if (coll.gameObject.name.Contains("Decrease"))
                 {
                     MoveSpeed -= 1;
@@ -185,11 +186,12 @@ public class PlayerControler : MonoBehaviour
                 {
                     MoveSpeed += 1;
                 }
-
+                GM?.BoostManager("speed", MoveSpeed != 5.0f, MoveSpeed > 5.0f);
                 StartCoroutine(waitRespawn(coll));
             }
             if (coll.gameObject.name.Contains("Jump"))
             {
+                
                 if (coll.gameObject.name.Contains("Decrease"))
                 {
                     JumpForce -= 1;
@@ -198,7 +200,7 @@ public class PlayerControler : MonoBehaviour
                 {
                     JumpForce += 1;
                 }
-
+                GM?.BoostManager("jump", JumpForce != 10f, JumpForce > 10f);
                 StartCoroutine(waitRespawn(coll));
             }
 

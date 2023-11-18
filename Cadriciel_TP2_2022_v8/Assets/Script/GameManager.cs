@@ -45,4 +45,9 @@ public class GameManager : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void BoostManager(string boostType, bool iconEnabled, bool iconGood)
+    {
+        UIM.BoostManager(boostType,iconEnabled,iconGood);
+    }
 }
