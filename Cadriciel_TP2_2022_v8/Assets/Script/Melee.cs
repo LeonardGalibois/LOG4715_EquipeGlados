@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
+    [SerializeField]
+    private int DamageAmout = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +27,11 @@ public class Melee : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<HealthComponent>().TakeDamage(1);
-            other.transform.parent.gameObject.transform
-                .GetChild(1).gameObject.transform
-                .GetChild(0).gameObject.transform
-                .GetChild(0).gameObject.GetComponent<BarViewComponent>().PercentValue -= 0.1f;
+            HealthComponent health = other.gameObject.GetComponent<HealthComponent>()
+                                ?? other.gameObject.GetComponentInParent<HealthComponent>()
+                                ?? other.gameObject.GetComponentInChildren<HealthComponent>();
+
+            health.TakeDamage(DamageAmout);
             Destroy(this.gameObject);
         }
     }

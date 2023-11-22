@@ -6,8 +6,8 @@ public class PlayerControler : MonoBehaviour
 {
     // Déclaration des constantes
     private static readonly Vector3 FlipRotation = new Vector3(0, 180, 0);
-    private static readonly Vector3 CameraPosition = new Vector3(10, 1, 0);
-    private static readonly Vector3 InverseCameraPosition = new Vector3(-10, 1, 0);
+    private static readonly Vector3 CameraPosition = new Vector3(4, 1, 0);
+    private static readonly Vector3 InverseCameraPosition = new Vector3(-4, 1, 0);
 
     // Déclaration des variables
     bool _Grounded { get; set; }
@@ -30,6 +30,12 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField]
     float dashCooldown = 1f;
+
+    [SerializeField]
+    float jumpIncrease = 2f;
+
+    [SerializeField]
+    float jumpDecrease = 2f;
 
     [SerializeField]
     LayerMask WhatIsGround;
@@ -104,11 +110,11 @@ public class PlayerControler : MonoBehaviour
                 canDash = false;
                 if (_Flipped)
                 {
-                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * -DashForce), ForceMode.Impulse);
+                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * -DashForce), ForceMode.VelocityChange);
                 }
                 else
                 {
-                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * DashForce), ForceMode.Impulse);
+                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * DashForce), ForceMode.VelocityChange);
             }
                 DashTrail.emitting = true;
                 yield return new WaitForSeconds(dashCooldown);
@@ -194,11 +200,11 @@ public class PlayerControler : MonoBehaviour
                 
                 if (coll.gameObject.name.Contains("Decrease"))
                 {
-                    JumpForce -= 1;
+                    JumpForce -= jumpIncrease;
                 }
                 if (coll.gameObject.name.Contains("Increase"))
                 {
-                    JumpForce += 1;
+                    JumpForce += jumpDecrease;
                 }
                 GM?.BoostManager("jump", JumpForce != 10f, JumpForce > 10f);
                 StartCoroutine(waitRespawn(coll));
