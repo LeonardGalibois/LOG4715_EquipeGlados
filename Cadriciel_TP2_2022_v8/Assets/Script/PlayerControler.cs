@@ -38,6 +38,12 @@ public class PlayerControler : MonoBehaviour
     float jumpDecrease = 2f;
 
     [SerializeField]
+    float speedIncrease = 2f;
+
+    [SerializeField]
+    float speedDecrease = 2f;
+
+    [SerializeField]
     LayerMask WhatIsGround;
     
     [SerializeField]
@@ -186,14 +192,14 @@ public class PlayerControler : MonoBehaviour
                 
                 if (coll.gameObject.name.Contains("Decrease"))
                 {
-                    MoveSpeed -= 1;
+                    MoveSpeed -= speedDecrease;
                 }
                 if (coll.gameObject.name.Contains("Increase"))
                 {
-                    MoveSpeed += 1;
+                    MoveSpeed += speedIncrease;
                 }
                 GM?.BoostManager("speed", MoveSpeed != 5.0f, MoveSpeed > 5.0f);
-                StartCoroutine(waitRespawn(coll));
+                StartCoroutine(waitRespawn(coll, false));
             }
             if (coll.gameObject.name.Contains("Jump"))
             {
@@ -207,17 +213,20 @@ public class PlayerControler : MonoBehaviour
                     JumpForce += jumpDecrease;
                 }
                 GM?.BoostManager("jump", JumpForce != 10f, JumpForce > 10f);
-                StartCoroutine(waitRespawn(coll));
+                StartCoroutine(waitRespawn(coll, false));
             }
 
         }
     }
-    IEnumerator waitRespawn(Collision coll)
+    IEnumerator waitRespawn(Collision coll, bool respawn)
     {
         coll.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(1);
+        if(respawn)
+        {
+            yield return new WaitForSeconds(1);
 
-        coll.gameObject.SetActive(true);
+            coll.gameObject.SetActive(true);
+        }
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9065338116381128176}
   - component: {fileID: 8716665936479686220}
   - component: {fileID: 7778662763880777242}
+  - component: {fileID: 1346448332733251228}
   m_Layer: 9
   m_Name: Drone
   m_TagString: Enemy
@@ -107,9 +108,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1346448332733251228}
+        m_TargetAssemblyTypeName: ScoreComponent, Assembly-CSharp
+        m_MethodName: AddToScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthUpdate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
 --- !u!54 &8716665936479686220
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,6 +183,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8, y: 0.25, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1346448332733251228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299279849966605241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26cbf5e6ee86e8c4f964f5e39ce2fba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 15
 --- !u!1001 &2899503156047947751
 PrefabInstance:
   m_ObjectHideFlags: 0
