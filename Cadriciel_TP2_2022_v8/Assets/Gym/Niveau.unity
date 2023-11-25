@@ -1509,12 +1509,12 @@ PrefabInstance:
     - target: {fileID: 6246453966270937979, guid: 3a27f21b48ed5fb44995d22a0490526d,
         type: 3}
       propertyPath: jumpDecrease
-      value: 3
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6246453966270937979, guid: 3a27f21b48ed5fb44995d22a0490526d,
         type: 3}
       propertyPath: jumpIncrease
-      value: 3
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6246453966270937979, guid: 3a27f21b48ed5fb44995d22a0490526d,
         type: 3}
