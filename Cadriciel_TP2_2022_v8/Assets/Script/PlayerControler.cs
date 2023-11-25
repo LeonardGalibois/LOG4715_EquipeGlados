@@ -157,8 +157,6 @@ public class PlayerControler : MonoBehaviour
     // Collision avec le sol
     void OnCollisionEnter(Collision coll)
     {
-        specialCollsion(coll);
-
         // On s'assure de bien être en contact avec le sol
         if ((WhatIsGround & (1 << coll.gameObject.layer)) == 0)
             return;
@@ -171,7 +169,12 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    void specialCollsion(Collision coll)
+    private void OnTriggerEnter(Collider other)
+    {
+        specialCollsion(other);
+    }
+
+    void specialCollsion(Collider coll)
     {
         if (coll.gameObject.tag == "Untagged")
         {
@@ -218,7 +221,7 @@ public class PlayerControler : MonoBehaviour
 
         }
     }
-    IEnumerator waitRespawn(Collision coll, bool respawn)
+    IEnumerator waitRespawn(Collider coll, bool respawn)
     {
         coll.gameObject.SetActive(false);
 

@@ -113,6 +113,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bf22700732ec3a840aba31ba908df6e4, type: 2}
+    - target: {fileID: 64793224268798134, guid: 9b14529ca926db74a82a313c52b8e17f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -153,7 +158,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1, y: 3, z: 0.4}
+  m_Size: {x: 3, y: 3, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1306608945995871306
 PrefabInstance:

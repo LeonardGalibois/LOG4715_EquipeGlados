@@ -36,6 +36,10 @@ public class SwarmComponent : MonoBehaviour
     [Min(0)]
     private int Damage = 1;
 
+    [SerializeField]
+    [Min(0)]
+    private int Knockback = 5;
+
     private static List<SwarmComponent> SwarmElements = new List<SwarmComponent>();
     private PlayerControler Character;
 
@@ -46,12 +50,15 @@ public class SwarmComponent : MonoBehaviour
 
     private Vector3 Velocity;
 
+    private HealthComponent Health;
+
     // Start is called before the first frame update
     void Start()
     {
         SwarmElements.Add(this);
         Character = FindObjectOfType<PlayerControler>();
         Velocity = Speed * transform.forward;
+        Health = gameObject.GetComponent<HealthComponent>();
     }
 
     // Update is called once per frame
@@ -65,7 +72,7 @@ public class SwarmComponent : MonoBehaviour
         SteerTowardTarget(ref direction);
         AvoidObstacle(ref direction);
 
-        UpdatePosition(direction);
+        if(Health.IsAlive) UpdatePosition(direction);
     }
 
     Vector3 SteerTowards(Vector3 vector)
@@ -167,10 +174,21 @@ public class SwarmComponent : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Character")
+        if(collision.gameObject.tag == "Character" && Health.IsAlive)
         {
             collision.gameObject.GetComponent<HealthComponent>().TakeDamage(Damage);
         }
+    }
+
+    public void OnDeath()
+    {
+        StartCoroutine(Disable());
+    }
+
+    private IEnumerator Disable()
+    {
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
     }
 
     private void OnDisable()
