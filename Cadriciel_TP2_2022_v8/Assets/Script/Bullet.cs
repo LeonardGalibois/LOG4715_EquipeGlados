@@ -36,7 +36,8 @@ public class Bullet : MonoBehaviour
             
             health.TakeDamage(DamageAmout);
         }
-        if(other.gameObject.tag != "Character")
+
+        if(other.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             Destroy(this.gameObject.transform.parent.gameObject);
             Destroy(gameObject);
