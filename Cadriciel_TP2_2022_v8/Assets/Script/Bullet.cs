@@ -11,14 +11,11 @@ public class Bullet : MonoBehaviour
     private float BulletLifeTime = 1.5f;
     [SerializeField]
     private int DamageAmout = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(((PlayerControler)FindObjectOfType(typeof(PlayerControler))).isFlipped())
-        {
-            this.transform.Rotate(0, 180, 0);
-        }
-            this.GetComponent<Rigidbody>().velocity = transform.forward * BulletSpeed;
+        GetComponent<Rigidbody>().velocity = transform.forward * BulletSpeed;
         StartCoroutine(TimeOutBullet());
     }
 

@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerShootProjectile : MonoBehaviour
 {
 
-    Vector3 Zoffset = new Vector3(0, 0, 0.3f);
-    Vector3 Yoffset = new Vector3(0, 0.55f, 0);
-    bool CanShoot = true;
+    [SerializeField] Vector3 offset;
     Animator _Anim { get; set; }
     [SerializeField]
     GameObject BulletPrefab;
     [SerializeField]
-    float BulletCooldown = 0.25f;
+    float Cooldown = 0.25f;
+    [SerializeField]
+    int HeatCost = 5;
+    [SerializeField]
+    OverheatComponent overheatComponent;
+
+    float nextAvailableTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,24 +27,20 @@ public class PlayerShootProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CanShoot && Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !IsOnCooldown() && !overheatComponent.IsOverheated)
         {
+            overheatComponent.AddHeat(HeatCost);
+            nextAvailableTime = Time.time + Cooldown;
             _Anim.SetTrigger("Shoot");
-            StartCoroutine(DisableShoot());
-            if (((PlayerControler)FindObjectOfType(typeof(PlayerControler))).isFlipped())
-            {
-                Instantiate(BulletPrefab, this.transform.position - Zoffset + Yoffset , Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(BulletPrefab, this.transform.position + Zoffset + Yoffset, Quaternion.identity);
-            }
+
+            GameObject bullet = Instantiate(BulletPrefab, transform.position + transform.TransformDirection(offset), Quaternion.identity);
+
+            Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(bullet.transform.position);
+            direction = (Camera.main.transform.right * direction.x + Camera.main.transform.up * direction.y).normalized;
+
+            bullet.transform.LookAt(bullet.transform.position + direction);
         }
     }
-    IEnumerator DisableShoot()
-    {
-        CanShoot = false;
-        yield return new WaitForSeconds(BulletCooldown);
-        CanShoot = true;
-    }
+
+    bool IsOnCooldown() => Time.time < nextAvailableTime;
 }
