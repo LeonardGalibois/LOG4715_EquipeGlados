@@ -136,7 +136,7 @@ public class SwarmComponent : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(this.transform.position, this.transform.forward);
-        if (Physics.Raycast(ray, out hit, VisionRadius / 2) && (hit.collider.tag != "Swarm") && (hit.collider.tag != "Character"))
+        if (Physics.Raycast(ray, out hit, VisionRadius / 2) && (hit.collider.tag != "Enemy") && (hit.collider.tag != "Character"))
         {
             direction += 10 * SteerTowards(FindFreeDirection());
         }
