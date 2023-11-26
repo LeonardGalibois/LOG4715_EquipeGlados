@@ -10,12 +10,11 @@ public class PlayerControler : MonoBehaviour
     private static readonly Vector3 InverseCameraPosition = new Vector3(-4, 1, 0);
 
     // Déclaration des variables
-    bool _Grounded { get; set; }
+    Collider _collider;
     bool _Flipped { get; set; }
     Animator _Anim { get; set; }
     Rigidbody _Rb { get; set; }
     Camera _MainCamera { get; set; }
-    bool canDash = true;
 
 
     // Valeurs exposées
@@ -45,6 +44,9 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField]
     LayerMask WhatIsGround;
+
+    [SerializeField]
+    float GroundCheckDistance;
     
     [SerializeField]
     TrailRenderer DashTrail;
@@ -52,18 +54,46 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     GameManager GM;
 
+    public bool IgnoreInput { set; get; }
+
+    bool _isGrounded;
+    public bool IsGrounded
+    {
+        set
+        {
+            if (value == _isGrounded) return;
+
+            _isGrounded = value;
+            _Anim.SetBool("Grounded", _isGrounded);
+        }
+        get => _isGrounded;
+    }
+
+    bool _isJumping;
+    public bool IsJumping
+    {
+        set
+        {
+            if (value == _isJumping) return;
+
+            _isJumping = value;
+            _Anim.SetBool("Jump", _isJumping);
+        }
+        get => _isJumping;
+    }
+
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
     {
         _Anim = GetComponent<Animator>();
         _Rb = GetComponent<Rigidbody>();
+        _collider = GetComponentInChildren<Collider>();
         _MainCamera = Camera.main;
     }
 
     // Utile pour régler des valeurs aux objets
     void Start()
     {
-        _Grounded = false;
         _Flipped = false;
     }
 
@@ -71,11 +101,13 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal") * MoveSpeed;
-        HorizontalMove(horizontal);
-        FlipCharacter(horizontal);
-        CheckJump();
-        CheckDash();
-    }
+        if (!IgnoreInput)
+        {
+            HorizontalMove(horizontal);
+            FlipCharacter(horizontal);
+            CheckJump();
+        }
+    }   
 
     // Gère le mouvement horizontal
     void HorizontalMove(float horizontal)
@@ -87,51 +119,19 @@ public class PlayerControler : MonoBehaviour
     // Gère le saut du personnage, ainsi que son animation de saut
     void CheckJump()
     {
-        if (_Grounded)
+        if (IsGrounded)
         {
             if (Input.GetButtonDown("Jump"))
             {
                 _Rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
-                _Grounded = false;
-                _Anim.SetBool("Grounded", false);
-                _Anim.SetBool("Jump", true);
+                IsJumping = true;
+                IsGrounded = false;
             }
         }
-    }
-
-    // Gère la ruée du personnage, ainsi que son animation de ruée
-
-
-    void CheckDash()
-    {
-        if (Input.GetButtonDown("Dash"))
-        {
-            StartCoroutine(Dash());
-        }
-    }
-    IEnumerator Dash()
-    {
-            if (canDash)
-            {
-                canDash = false;
-                if (_Flipped)
-                {
-                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * -DashForce), ForceMode.VelocityChange);
-                }
-                else
-                {
-                    _Rb.AddForce(new Vector3(0, 0, transform.localScale.z * DashForce), ForceMode.VelocityChange);
-            }
-                DashTrail.emitting = true;
-                yield return new WaitForSeconds(dashCooldown);
-                DashTrail.emitting = false;
-                //yield return new WaitForSeconds(dashCooldown);
-                canDash = true;
-            }
     }
 
     // Gère l'orientation du joueur et les ajustements de la camera
-    void FlipCharacter(float horizontal)
+    public void FlipCharacter(float horizontal)
     {
         if (horizontal < 0 && !_Flipped)
         {
@@ -154,19 +154,14 @@ public class PlayerControler : MonoBehaviour
         return _Flipped;
     }
 
-    // Collision avec le sol
-    void OnCollisionEnter(Collision coll)
+    void FixedUpdate()
     {
-        // On s'assure de bien être en contact avec le sol
-        if ((WhatIsGround & (1 << coll.gameObject.layer)) == 0)
-            return;
+        Vector3 origin = _collider.bounds.center;
+        float maxDistance = _collider.bounds.size.y / 2 + GroundCheckDistance;
 
-        // Évite une collision avec le plafond
-        if (coll.relativeVelocity.y > 0)
-        {
-            _Grounded = true;
-            _Anim.SetBool("Grounded", _Grounded);
-        }
+        IsGrounded = Physics.Raycast(origin, Vector3.down, maxDistance, WhatIsGround);
+
+        if (IsJumping && _Rb.velocity.y <= 0) IsJumping = false;
     }
 
     private void OnTriggerEnter(Collider other)
