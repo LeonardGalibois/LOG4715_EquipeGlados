@@ -53,7 +53,6 @@ public class DashThrough : MonoBehaviour
     {
         if (!m_dashing) return;
 
-
         HealthComponent health = other.gameObject.GetComponentInParent<HealthComponent>() ?? other.gameObject.GetComponentInChildren<HealthComponent>();
 
         if (health != null) health.TakeDamage(damage);
@@ -63,9 +62,7 @@ public class DashThrough : MonoBehaviour
     {
         float elapsedTime = 0f;
         float speed = distance / duration;
-        Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(m_Rigidbody.position);
-
-        direction = (Camera.main.transform.right * direction.x + Camera.main.transform.up * direction.y).normalized;
+        Vector3 direction = transform.forward;
 
         m_PlayerController.FlipCharacter(Vector3.Dot(Camera.main.transform.right, direction));
 
