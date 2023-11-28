@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class ScoreManager: MonoBehaviour
 {
     public UnityEvent<int> OnScoreUpdated;
+    private AudioSource source;
 
     static public ScoreManager Instance { private set; get; }
 
@@ -16,6 +17,7 @@ public class ScoreManager: MonoBehaviour
         {
             score = value;
             OnScoreUpdated?.Invoke(score);
+            source.Play();
         }
         get => score;
     }
@@ -24,5 +26,6 @@ public class ScoreManager: MonoBehaviour
     {
         if (Instance is null) Instance = this;
         else Destroy(this);
+        source = GetComponent<AudioSource>();
     }
 }
