@@ -71,7 +71,7 @@ public class BarViewComponent : MonoBehaviour
     public void SetPercentValueInstantly(float value)
     {
         PercentValue = value;
-
+        Debug.Log(value);
         interpolationRange = 0;
     }
 

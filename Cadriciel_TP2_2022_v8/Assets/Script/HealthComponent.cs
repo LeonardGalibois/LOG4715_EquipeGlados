@@ -53,7 +53,7 @@ public class HealthComponent : MonoBehaviour
     public UnityEvent OnDeath;
     public UnityEvent<float> OnHealthUpdate;
 
-    private void Start() => Revive();
+    private void Awake() => Revive();
 
     public void TakeDamage(int amount)
     {

@@ -1440,6 +1440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sFuture Modules Pro Panel 1x1 Plain
       objectReference: {fileID: 0}
+    - target: {fileID: 1292006425902970, guid: 3b317e8276e0b6e49b4a75f3643394a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1891874623262268, guid: 3b317e8276e0b6e49b4a75f3643394a5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1494,11 +1498,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560231349131144, guid: 3b317e8276e0b6e49b4a75f3643394a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.212
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4560231349131144, guid: 3b317e8276e0b6e49b4a75f3643394a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4560231349131144, guid: 3b317e8276e0b6e49b4a75f3643394a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1523,12 +1527,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6f19099b78ca5f248929afafc0995abe, type: 2}
+      objectReference: {fileID: 2100000, guid: 0a0e135f6ebf8e240a714cb87c990ce7, type: 2}
     - target: {fileID: 23512781432520470, guid: 3b317e8276e0b6e49b4a75f3643394a5,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 1ceb5a7c47c5bf94aa4bc49e7f06256b, type: 2}
+    - target: {fileID: 3248729551504158939, guid: 3b317e8276e0b6e49b4a75f3643394a5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1717,7 +1726,7 @@ PrefabInstance:
     - target: {fileID: 637501767048988835, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
       propertyPath: OnHealthUpdate.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 637501767048988835, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
@@ -1907,22 +1916,22 @@ PrefabInstance:
     - target: {fileID: 6228961521260095354, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
       propertyPath: m_ClearFlags
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6228961521260095354, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.4666667
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228961521260095354, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.32941177
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228961521260095354, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.16078432
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8354680153254680571, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}

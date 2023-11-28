@@ -12,9 +12,9 @@ public class HealthControllerComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        healthBar.SetPercentValueInstantly((float)healthComponent.Health / healthComponent.MaximumHealth);
-
         healthComponent.OnHealthUpdate.AddListener(UpdateHealthBar);
+
+        healthBar.SetPercentValueInstantly((float)healthComponent.Health / healthComponent.MaximumHealth);
     }
 
     private void OnDisable()
