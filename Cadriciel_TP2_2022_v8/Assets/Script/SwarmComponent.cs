@@ -40,6 +40,9 @@ public class SwarmComponent : MonoBehaviour
     [Min(0)]
     private int Knockback = 5;
 
+    [SerializeField]
+    private AudioSource DamageSound;
+
     private static List<SwarmComponent> SwarmElements = new List<SwarmComponent>();
     private PlayerControler Character;
 
@@ -177,8 +180,7 @@ public class SwarmComponent : MonoBehaviour
         if (collision.gameObject.tag == "Character" && Health.IsAlive)
         {
             collision.gameObject.GetComponent<HealthComponent>().TakeDamage(Damage);
-
-            
+            DamageSound?.Play();
         }
     }
 
