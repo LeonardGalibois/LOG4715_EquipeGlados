@@ -15,7 +15,7 @@ public class OverheatControllerComponent : MonoBehaviour
 
     void Start()
     {
-        barViewComponent.SetPercentValueInstantly((float)overheatComponent.Heat / overheatComponent.MaxHeat);
+        barViewComponent.SetBarPercentInstantly((float)overheatComponent.Heat / overheatComponent.MaxHeat);
 
         if (overheatComponent.IsOverheated) OnOverheated();
         else OnRestored();
@@ -37,7 +37,7 @@ public class OverheatControllerComponent : MonoBehaviour
 
     void UpdateOverheatBar(int value)
     {
-        barViewComponent.PercentValue = (float)value / overheatComponent.MaxHeat;
+        barViewComponent.SetBarPercent((float)value / overheatComponent.MaxHeat);
     }
 
     void OnOverheated()

@@ -17,17 +17,15 @@ public class BarViewComponent : MonoBehaviour
     float percentValue;
     public float PercentValue
     {
-        set
+        protected set
         {
             if (value == percentValue) return;
             if (value < 0.0f) value = 0.0f;
             if (value > 1.0f) value = 1.0f;
 
-            interpolationRange = value - percentValue;
-
             percentValue = value;
 
-            SetBarPercent(percentValue);
+            bar?.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, container.rect.width * percentValue);
         }
         get => percentValue;
     }
@@ -36,9 +34,8 @@ public class BarViewComponent : MonoBehaviour
     {
         increaseBar?.gameObject.SetActive(false);
         decreaseBar?.gameObject.SetActive(false);
-
-        SetPercentValueInstantly(0);
         bar?.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0.0f);
+        SetBarPercentInstantly(0);
     }
 
     private void Update()
@@ -68,12 +65,19 @@ public class BarViewComponent : MonoBehaviour
         barToUse.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, container.rect.width * Mathf.Abs(interpolationRange));
     }
 
-    public void SetPercentValueInstantly(float value)
+    public void SetBarPercentInstantly(float percent)
     {
-        PercentValue = value;
-        Debug.Log(value);
-        interpolationRange = 0;
+        Debug.Log($"Setting Bar Percent Instantly to {percent}");
+        PercentValue = percent;
     }
 
-    void SetBarPercent(float percent) => bar?.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, container.rect.width * percent);
+    public void SetBarPercent(float percent)
+    {
+        if (percent > 1.0f) percent = 1.0f;
+        if (percent < 0.0f) percent = 0.0f;
+
+        interpolationRange = percent - percentValue;
+
+        PercentValue = percent;
+    }
 }

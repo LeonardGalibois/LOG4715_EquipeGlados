@@ -10,11 +10,15 @@ public class HealthControllerComponent : MonoBehaviour
     [SerializeField]
     BarViewComponent healthBar;
 
+    private void Start()
+    {
+        Debug.Log($"Setting health instantly to {(float)healthComponent.Health / healthComponent.MaximumHealth} [{healthComponent.Health}/{healthComponent.MaximumHealth}]");
+        healthBar.SetBarPercentInstantly((float)healthComponent.Health / healthComponent.MaximumHealth);
+    }
+
     private void OnEnable()
     {
         healthComponent.OnHealthUpdate.AddListener(UpdateHealthBar);
-
-        healthBar.SetPercentValueInstantly((float)healthComponent.Health / healthComponent.MaximumHealth);
     }
 
     private void OnDisable()
@@ -24,6 +28,6 @@ public class HealthControllerComponent : MonoBehaviour
 
     void UpdateHealthBar(float value)
     {
-        healthBar.PercentValue = (float)healthComponent.Health / healthComponent.MaximumHealth;
+        healthBar.SetBarPercent((float)healthComponent.Health / healthComponent.MaximumHealth);
     }
 }
