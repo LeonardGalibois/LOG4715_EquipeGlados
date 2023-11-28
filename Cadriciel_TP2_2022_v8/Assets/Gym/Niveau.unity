@@ -1707,7 +1707,7 @@ PrefabInstance:
     - target: {fileID: 637501767048988835, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
       propertyPath: maximumHealth
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 637501767048988835, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
@@ -1808,6 +1808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnHealthUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 738202145374529004, guid: e98a134220e40ec45942a904c28fe381,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4565335849236261682, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
@@ -1918,6 +1923,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BackGroundColor.r
       value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354680153254680571, guid: e98a134220e40ec45942a904c28fe381,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8994893132319273704, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}

@@ -78,10 +78,10 @@ MonoBehaviour:
   HeadingWeight: 1
   CenterWeight: 1
   SeparationWeight: 1
-  TargetWeight: 4
+  TargetWeight: 10
   Speed: 8
   Damage: 1
-  Knockback: 5
+  Knockback: 10
 --- !u!114 &9065338116381128176
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -138,7 +138,7 @@ public class SwarmComponent : MonoBehaviour
         Ray ray = new Ray(this.transform.position, this.transform.forward);
         if (Physics.Raycast(ray, out hit, VisionRadius / 2) && (hit.collider.tag != "Enemy") && (hit.collider.tag != "Character"))
         {
-            direction += 10 * SteerTowards(FindFreeDirection());
+            direction += (10.0f / hit.distance) * SteerTowards(FindFreeDirection());
         }
     }
 
@@ -174,9 +174,21 @@ public class SwarmComponent : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Character" && Health.IsAlive)
+        if (collision.gameObject.tag == "Character" && Health.IsAlive)
         {
             collision.gameObject.GetComponent<HealthComponent>().TakeDamage(Damage);
+
+            
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Character" && Health.IsAlive)
+        {
+            Vector3 direction = (collision.gameObject.transform.position - gameObject.transform.position);
+            direction.Normalize();
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(direction * Knockback, ForceMode.Impulse);
         }
     }
 
