@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ed7dfddceedd22a4885a2b7b856caf13,
         type: 3}
       propertyPath: m_Name
-      value: KeyCard Variant
+      value: KeyCard Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -86,6 +86,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3044942449375485762}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed7dfddceedd22a4885a2b7b856caf13,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6492957126556909863}
   m_SourcePrefab: {fileID: 100100000, guid: ed7dfddceedd22a4885a2b7b856caf13, type: 3}
 --- !u!1 &3639553666334580342 stripped
 GameObject:
@@ -114,3 +118,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 5, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6492957126556909863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639553666334580342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f852182541373ba46b9c71102f1259a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

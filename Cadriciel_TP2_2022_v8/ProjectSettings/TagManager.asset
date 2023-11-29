@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Character
   - Enemy
+  - Stat
+  - Blue Key
+  - Red Key
+  - Blue Door
+  - Red Door
   layers:
   - Default
   - TransparentFX
