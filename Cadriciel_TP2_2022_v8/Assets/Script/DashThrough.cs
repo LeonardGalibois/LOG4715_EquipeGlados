@@ -35,7 +35,7 @@ public class DashThrough : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Dash") && !IsOnCooldown() && !overheatComponent.IsOverheated)
+        if (!m_PlayerController.IgnoreInput && Input.GetButtonDown("Dash") && !IsOnCooldown() && !overheatComponent.IsOverheated)
         {
             m_nextAvailableTime = Time.time + duration + cooldown;
             overheatComponent.AddHeat(heatCost);

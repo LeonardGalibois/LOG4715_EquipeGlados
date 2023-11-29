@@ -8,6 +8,8 @@ public class PlayerAttackMelee : MonoBehaviour
     Vector3 Zoffset = new Vector3(0, 0, 0.3f);
     Vector3 Yoffset = new Vector3(0, 0.75f, 0);
     Animator _Anim { get; set; }
+    PlayerControler _PlayerController { get; set; }
+
     [SerializeField]
     GameObject MeleeHitboxPrefab;
     [SerializeField]
@@ -16,12 +18,13 @@ public class PlayerAttackMelee : MonoBehaviour
     void Start()
     {
         _Anim = GetComponent<Animator>();
+        _PlayerController = GetComponent<PlayerControler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (CanAttack && Input.GetButtonDown("Fire2"))
+        if (!_PlayerController.IgnoreInput && CanAttack && Input.GetButtonDown("Fire2"))
         {
             _Anim.SetTrigger("Punch");
             StartCoroutine(DisableAttack());

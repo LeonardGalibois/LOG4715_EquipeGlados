@@ -7,6 +7,8 @@ public class PlayerShootProjectile : MonoBehaviour
 
     [SerializeField] Vector3 offset;
     Animator _Anim { get; set; }
+    PlayerControler _PlayerController { get; set; }
+
     [SerializeField]
     GameObject BulletPrefab;
     [SerializeField]
@@ -22,12 +24,13 @@ public class PlayerShootProjectile : MonoBehaviour
     void Start()
     {
         _Anim = GetComponent<Animator>();
+        _PlayerController = GetComponent<PlayerControler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !IsOnCooldown() && !overheatComponent.IsOverheated)
+        if (!_PlayerController.IgnoreInput && Input.GetButtonDown("Fire1") && !IsOnCooldown() && !overheatComponent.IsOverheated)
         {
             overheatComponent.AddHeat(HeatCost);
             nextAvailableTime = Time.time + Cooldown;

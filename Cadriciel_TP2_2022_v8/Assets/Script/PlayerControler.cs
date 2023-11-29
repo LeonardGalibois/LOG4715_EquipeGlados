@@ -89,6 +89,7 @@ public class PlayerControler : MonoBehaviour
         _Rb = GetComponent<Rigidbody>();
         _collider = GetComponentInChildren<Collider>();
         _MainCamera = Camera.main;
+        GetComponentInChildren<HealthComponent>()?.OnDeath.AddListener(OnDeath);
     }
 
     // Utile pour régler des valeurs aux objets
@@ -167,6 +168,12 @@ public class PlayerControler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         specialCollsion(other);
+    }
+
+    public void OnDeath()
+    {
+        IgnoreInput = true;
+        _Anim.SetTrigger("Die");
     }
 
     void specialCollsion(Collider coll)
