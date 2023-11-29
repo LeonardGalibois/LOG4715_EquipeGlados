@@ -8,6 +8,7 @@ public class TimerController : MonoBehaviour
 {
     // Start is called before the first frame update
     TextMeshProUGUI text;
+    public StartMenuController SMC;
 
     void Start()
     {
@@ -17,12 +18,13 @@ public class TimerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( (((int)Time.unscaledTime)%60) < 10){
-            text.text = (((int)Time.unscaledTime) / 60).ToString() + ":0" + (((int)Time.unscaledTime) % 60).ToString();
+        
+        if ( (((int)Time.unscaledTime - SMC.startTime) %60) < 10){
+            text.text = (((int)Time.unscaledTime- SMC.startTime) / 60).ToString() + ":0" + (((int)Time.unscaledTime- SMC.startTime) % 60).ToString();
         }
         else
         {
-            text.text = (((int)Time.unscaledTime) / 60).ToString() + ":" + (((int)Time.unscaledTime) % 60).ToString();
+            text.text = (((int)Time.unscaledTime- SMC.startTime) / 60).ToString() + ":" + (((int)Time.unscaledTime - SMC.startTime) % 60).ToString();
         }  
     }
 }

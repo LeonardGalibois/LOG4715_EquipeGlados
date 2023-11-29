@@ -904,12 +904,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a211a9c4861d02f439e2791adccd2e68, type: 3}
---- !u!1 &755660241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318147578231779312, guid: 75d037e3742b05d4c9cf0025f2d04dcd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1782137923}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &772297452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1670,6 +1664,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 693665695669886601, guid: 039be1975387eb944a9bf8200407577a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2340731928384688619, guid: 039be1975387eb944a9bf8200407577a,
         type: 3}
       propertyPath: m_Name
@@ -1785,6 +1784,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9133637231581372522, guid: 039be1975387eb944a9bf8200407577a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133637231581372522, guid: 039be1975387eb944a9bf8200407577a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133637231581372522, guid: 039be1975387eb944a9bf8200407577a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1798,6 +1812,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1944381050}
   m_SourcePrefab: {fileID: 100100000, guid: 039be1975387eb944a9bf8200407577a, type: 3}
+--- !u!1 &1876020784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 693665695669886601, guid: 039be1975387eb944a9bf8200407577a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1876020783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1926319453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1835,7 +1855,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 755660241}
+      objectReference: {fileID: 1876020784}
     - target: {fileID: 637501767048988835, guid: e98a134220e40ec45942a904c28fe381,
         type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target

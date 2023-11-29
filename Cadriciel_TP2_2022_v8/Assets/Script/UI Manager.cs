@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public RawImage BluePanel;
     public GameObject speedBoost;
     public GameObject jumpBoost;
+    public GameObject PauseScreen;
 
 
 
@@ -22,9 +23,11 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKey("escape"))
+        {
+            PauseScreen.SetActive(true);
+        }
     }
-
     public void ObtainKey(string Tag)
     {
         Debug.Log(Tag);
