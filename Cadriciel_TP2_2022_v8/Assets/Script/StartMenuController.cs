@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StartMenuController : MonoBehaviour
 {
+    public int startTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,13 @@ public class StartMenuController : MonoBehaviour
         Time.timeScale = 1.0f;
         Debug.Log("gamestarted");
         this.gameObject.SetActive(false);
+        startTime = (int) Time.unscaledTime;
+    }
+
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
 }
