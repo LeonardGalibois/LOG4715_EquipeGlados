@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpeed: 20
-  BulletLifeTime: 1.5
-  DamageAmout: 4
+  BulletLifeTime: 3
+  DamageAmout: 5
 --- !u!1 &4570679380089790598
 GameObject:
   m_ObjectHideFlags: 0
