@@ -13,6 +13,7 @@ public class DashThrough : MonoBehaviour
     float m_nextAvailableTime;
     bool m_dashing;
 
+    [SerializeField] AudioSource m_AudioSource;
     [SerializeField] string layerNameToDashThrough;
     [SerializeField] float cooldown = 1f;
     [SerializeField] float distance = 3f;
@@ -37,6 +38,7 @@ public class DashThrough : MonoBehaviour
     {
         if (!m_PlayerController.IgnoreInput && Input.GetButtonDown("Dash") && !IsOnCooldown() && !overheatComponent.IsOverheated)
         {
+            m_AudioSource?.Play();
             m_nextAvailableTime = Time.time + duration + cooldown;
             overheatComponent.AddHeat(heatCost);
 

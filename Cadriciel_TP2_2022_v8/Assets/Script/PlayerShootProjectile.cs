@@ -7,6 +7,7 @@ public class PlayerShootProjectile : MonoBehaviour
 
     [SerializeField] Vector3 offset;
     Animator _Anim { get; set; }
+    [SerializeField] AudioSource _AudioSource;
     PlayerControler _PlayerController { get; set; }
 
     [SerializeField]
@@ -34,6 +35,8 @@ public class PlayerShootProjectile : MonoBehaviour
         {
             overheatComponent.AddHeat(HeatCost);
             nextAvailableTime = Time.time + Cooldown;
+
+            _AudioSource?.Play();
             _Anim.SetTrigger("Shoot");
 
             GameObject bullet = Instantiate(BulletPrefab, transform.position + transform.TransformDirection(offset), Quaternion.identity);

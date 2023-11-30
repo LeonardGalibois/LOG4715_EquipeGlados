@@ -54,6 +54,9 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     GameManager GM;
 
+    [SerializeField]
+    AudioSource m_DeathSound;
+
     public bool IgnoreInput { set; get; }
 
     bool _isGrounded;
@@ -174,6 +177,7 @@ public class PlayerControler : MonoBehaviour
     {
         IgnoreInput = true;
         _Anim.SetTrigger("Die");
+        m_DeathSound?.Play();
     }
 
     void specialCollsion(Collider coll)

@@ -8,6 +8,7 @@ public class PlayerAttackMelee : MonoBehaviour
     Vector3 Zoffset = new Vector3(0, 0, 0.3f);
     Vector3 Yoffset = new Vector3(0, 0.75f, 0);
     Animator _Anim { get; set; }
+    [SerializeField] AudioSource _AudioSource;
     PlayerControler _PlayerController { get; set; }
 
     [SerializeField]
@@ -27,6 +28,7 @@ public class PlayerAttackMelee : MonoBehaviour
         if (!_PlayerController.IgnoreInput && CanAttack && Input.GetButtonDown("Fire2"))
         {
             _Anim.SetTrigger("Punch");
+            _AudioSource?.Play();
             StartCoroutine(DisableAttack());
             if (((PlayerControler)FindObjectOfType(typeof(PlayerControler))).isFlipped())
             {
