@@ -207,7 +207,7 @@ public class PlayerControler : MonoBehaviour
                 {
                     MoveSpeed += speedIncrease;
                 }
-                GM?.BoostManager("speed", MoveSpeed != 5.0f, MoveSpeed > 5.0f);
+                GM?.BoostManager("speed", MoveSpeed != 4.0f, MoveSpeed > 4.0f);
                 StartCoroutine(waitRespawn(coll, false));
             }
             if (coll.gameObject.name.Contains("Jump"))
@@ -221,7 +221,7 @@ public class PlayerControler : MonoBehaviour
                 {
                     JumpForce += jumpDecrease;
                 }
-                GM?.BoostManager("jump", JumpForce != 10f, JumpForce > 10f);
+                GM?.BoostManager("jump", JumpForce != 6f, JumpForce > 6f);
                 StartCoroutine(waitRespawn(coll, false));
             }
 

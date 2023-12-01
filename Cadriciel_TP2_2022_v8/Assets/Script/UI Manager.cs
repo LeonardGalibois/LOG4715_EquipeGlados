@@ -11,8 +11,11 @@ public class UIManager : MonoBehaviour
     public GameObject speedBoost;
     public GameObject jumpBoost;
     public GameObject PauseScreen;
+    public TimerController timerController;
 
-
+    float pauseTimer=0f;
+    float pauseCooldown = 0f;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +26,29 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("escape"))
+        if (Time.unscaledTime - pauseCooldown > 0.2f && Input.GetKey("escape"))
         {
-            PauseScreen.SetActive(true);
+            if (pauseTimer == 0f)
+            {
+                pauseCooldown= Time.unscaledTime;
+                pauseTimer = Time.unscaledTime;
+                PauseScreen.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                Resume();
+                pauseCooldown = Time.unscaledTime;
+            }
         }
+
+    }
+    public void Resume()
+    {
+        timerController.AddPauseTimer(Time.unscaledTime-pauseTimer);
+        pauseTimer = 0f;
+        PauseScreen.SetActive(false);
+        Time.timeScale = 1.0f;
     }
     public void ObtainKey(string Tag)
     {
